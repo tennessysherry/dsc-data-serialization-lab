@@ -16,7 +16,7 @@ You will be able to:
 
 ## Your Task: Analyze the Relationship between Population and World Cup Performance
 
-![Russia 2018 branded soccer ball and trophy](images/world_cup.jpg)
+![Russia 2018 branded soccer ball and trophy](https://curriculum-content.s3.amazonaws.com/data-science/images/world_cup.jpg)
 
 <span>Photo by <a href="https://unsplash.com/@fznsr_?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Fauzan Saari</a> on <a href="https://unsplash.com/s/photos/soccer-world-cup?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 
@@ -26,7 +26,7 @@ You will be able to:
 
 Intuitively, we might assume that countries with larger populations would have better performance in international sports competitions. While this has been demonstrated to be [true for the Olympics](https://www.researchgate.net/publication/308513557_Medals_at_the_Olympic_Games_The_Relationship_Between_Won_Medals_Gross_Domestic_Product_Population_Size_and_the_Weight_of_Sportive_Practice), the results for the FIFA World Cup are more mixed:
 
-<p><a href="https://commons.wikimedia.org/wiki/File:World_cup_countries_best_results_and_hosts.PNG#/media/File:World_cup_countries_best_results_and_hosts.PNG"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/World_cup_countries_best_results_and_hosts.PNG" alt="World cup countries best results and hosts.PNG" height="563" width="1280"></a><br><a href="http://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=578740">Link</a></p>
+<p><a href="https://web.archive.org/web/20230524202759/https://upload.wikimedia.org/wikipedia/commons/3/3c/World_cup_countries_best_results.png"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/World_cup_countries_best_results.png" alt="World cup countries best results and hosts.PNG" height="563" width="1280"></a><br><a href="http://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=578740">Link</a></p>
 
 In this analysis, we are going to look specifically at the sample of World Cup games in 2018 and the corresponding 2018 populations of the participating nations, to determine the relationship between population and World Cup performance for this year.
 
@@ -134,7 +134,7 @@ Next, we open the relevant files.
 
 ```python
 # Run this cell without changes
-world_cup_file = open("data/world_cup_2018.json")
+world_cup_file = open("data/world_cup_2018.json", encoding="utf8")
 population_file = open("data/country_populations.csv")
 ```
 
@@ -163,7 +163,7 @@ Make sure the `assert` passes, ensuring that `world_cup_data` has the correct ty
 assert type(world_cup_data) == dict
 
 # Check that the dictionary has 2 keys, 'name' and 'rounds'
-assert list(world_cup_data.keys()) == ['name', 'rounds']
+assert list(world_cup_data.keys()) == ["name", "rounds"]
 ```
 
 ### Population Data
@@ -194,6 +194,7 @@ assert type(population_data) == list
 # (csv.DictReader interface differs slightly by Python version;
 # either a dict or an OrderedDict is fine here)
 from collections import OrderedDict
+
 assert type(population_data[0]) == dict or type(population_data[0]) == OrderedDict
 ```
 
@@ -323,7 +324,7 @@ for round_ in rounds:
     round_matches = None
     # Add them to the overall list of matches
     None
-    
+
 matches[0]
 ```
 
@@ -366,7 +367,7 @@ for match in matches:
     None
     # Add team2 name value to teams_set
     None
-    
+
 teams = sorted(list(teams_set))
 print(teams)
 ```
@@ -388,7 +389,7 @@ assert len(teams) == 32
 assert type(teams[0]) == str
 ```
 
-Great, step 1 complete! We have unique identifiers (names) for each of our records (countries) that we will be able to use to connect 2018 World Cup performance to 2018 population.
+Step 1 complete. We have unique identifiers (names) for each of our records (countries) that we will be able to use to connect 2018 World Cup performance to 2018 population.
 
 ## 2. Associating Countries with 2018 World Cup Performance
 
@@ -498,6 +499,7 @@ The winner is determined by comparing the values associated with the `'score1'` 
 ```python
 # Replace None with appropriate code
 
+
 def find_winner(match):
     """
     Given a dictionary containing information about a match,
@@ -528,7 +530,7 @@ for match in matches:
     if winner:
         # Add 1 to the associated count of wins
         None
-        
+
 # Visually inspect the output to ensure the wins are
 # different for different countries
 combined_data
@@ -536,7 +538,7 @@ combined_data
 
 ### Analysis of Wins
 
-While we could try to understand all 32 of those numbers just by scanning through them, let's use some descriptive statistics and data visualizations instead!
+While we could try to understand all 32 of those numbers just by scanning through them, let's use some descriptive statistics and data visualizations instead
 
 #### Statistical Summary of Wins
 
@@ -594,7 +596,7 @@ Before we move to looking at the relationship between wins and population, it's 
 
 > Add to the existing data structure so that it also connects each country name to its 2018 population, and create visualizations comparable to those from step 2.
 
-Now we're ready to add the 2018 population to `combined_data`, finally using the CSV file!
+Now we're ready to add the 2018 population to `combined_data`, finally using the CSV file
 
 Recall that `combined_data` currently looks something like this:
 ```
@@ -665,8 +667,8 @@ population_data_filtered = []
 for record in population_data:
     # Add record to population_data_filtered if relevant
     None
-    
-len(population_data_filtered) # 27
+
+len(population_data_filtered)  # 27
 ```
 
 Hmm...what went wrong? Why do we only have 27 records, and not 32?
@@ -689,7 +691,7 @@ And compare that with the value for Iran in `teams`:
 teams[13]
 ```
 
-Ohhhh...we have a data normalization issue! One dataset refers to this country as `'Iran, Islamic Rep.'`, while the other refers to it as `'Iran'`. This is a common issue we face when using data about countries and regions, where there is no universally-accepted naming convention.
+Ohhhh...we have a data normalization issue. One dataset refers to this country as `'Iran, Islamic Rep.'`, while the other refers to it as `'Iran'`. This is a common issue we face when using data about countries and regions, where there is no universally-accepted naming convention.
 
 ### Normalizing Locations in Population Data
 
@@ -710,11 +712,12 @@ def normalize_location(country_name):
         "Egypt, Arab Rep.": "Egypt",
         "Iran, Islamic Rep.": "Iran",
         "Korea, Rep.": "South Korea",
-        "United Kingdom": "England"
+        "United Kingdom": "England",
     }
     # The .get method returns the corresponding value from
     # the dict if present, otherwise returns country_name
     return name_sub_dict.get(country_name, country_name)
+
 
 # Example where normalized location is different
 print(normalize_location("Russian Federation"))
@@ -739,11 +742,11 @@ for record in population_data:
         None
         # Append to list
         None
-        
-len(population_data_filtered) # 32
+
+len(population_data_filtered)  # 32
 ```
 
-Great, now we should have 32 records instead of 27!
+Great, now we should have 32 records instead of 27.
 
 ### Type Conversion of Population Data
 
@@ -765,7 +768,7 @@ In the cell below, loop over `population_data_filtered` and convert the data typ
 for record in population_data_filtered:
     # Convert the population value from str to int
     None
-    
+
 # Look at the last record to make sure the population
 # value is an int
 population_data_filtered[-1]
@@ -781,7 +784,7 @@ assert type(population_data_filtered[-1]["Value"]) == int
 
 ### Adding Population Data
 
-Now it's time to add the population data to `combined_data`! Recall that the data structure currently looks like this:
+Now it's time to add the population data to `combined_data`. Recall that the data structure currently looks like this:
 
 
 ```python
@@ -810,7 +813,7 @@ for record in population_data_filtered:
     population = None
     # Add this information to combined_data
     None
-    
+
 # Look combined_data
 combined_data
 ```
@@ -903,21 +906,17 @@ A **scatter plot** is he most sensible form of data visualization for showing th
 fig, ax = plt.subplots(figsize=(8, 5))
 
 # Basic scatter plot
-ax.scatter(
-    x=populations,
-    y=wins,
-    color="gray", alpha=0.5, s=100
-)
+ax.scatter(x=populations, y=wins, color="gray", alpha=0.5, s=100)
 ax.set_xlabel("2018 Population")
 ax.set_ylabel("2018 World Cup Wins")
 ax.set_title("Population vs. World Cup Wins")
 
 # Add annotations for specific points of interest
 highlighted_points = {
-    "Belgium": 2, # Numbers are the index of that
+    "Belgium": 2,  # Numbers are the index of that
     "Brazil": 3,  # country in populations & wins
     "France": 10,
-    "Nigeria": 17
+    "Nigeria": 17,
 }
 for country, index in highlighted_points.items():
     # Get x and y position of data point
@@ -928,11 +927,7 @@ for country, index in highlighted_points.items():
     xtext = x - (1.25e6 * len(country))
     ytext = y - 0.5
     # Annotate with relevant arguments
-    ax.annotate(
-        text=country,
-        xy=(x, y),
-        xytext=(xtext, ytext)
-    )
+    ax.annotate(text=country, xy=(x, y), xytext=(xtext, ytext))
 ```
 
 ### Data Visualization Interpretation
@@ -968,4 +963,4 @@ None
 
 ## Summary
 
-Congratulations! That was a long lab, pulling together a lot of material. You read data into Python, extracted the relevant information, cleaned the data, and combined the data into a new format to be used in analysis. While we will continue to introduce new tools and techniques, these essential steps will be present for the rest of your data science projects from here on out!
+That was a long lab, pulling together a lot of material. You read data into Python, extracted the relevant information, cleaned the data, and combined the data into a new format to be used in analysis. While we will continue to introduce new tools and techniques, these essential steps will be present for the rest of your data science projects from here on out.
